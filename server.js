@@ -3,13 +3,22 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 // Enable CORS
 app.use(cors());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
+// Start Server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
 // Create connection pool
 const pool = mysql.createPool({
